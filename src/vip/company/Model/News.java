@@ -1,4 +1,5 @@
 package vip.company.Model;
+import java.util.*;
 
 public class News implements Displayable{
     protected String title;
