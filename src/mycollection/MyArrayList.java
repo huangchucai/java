@@ -1,5 +1,8 @@
 package mycollection;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class MyArrayList {
     private static final int DEFAULT_CAPACITY = 10;
     private static final Object[] EMPTY_ELEMENT_DATA = {};
@@ -72,6 +75,7 @@ public class MyArrayList {
         // 更新底层数据
         elementData = newElementData;
     }
+
     // 方法的重载
     // 根据索引删除元素
     public Object remove(int index) {
@@ -92,15 +96,15 @@ public class MyArrayList {
     // 根据值删除元素
     public boolean remove(Object obj) {
         if (obj == null) {
-            for(int index = 0; index < elementData.length; index++) {
-                if(elementData[index] == null) {
+            for (int index = 0; index < elementData.length; index++) {
+                if (elementData[index] == null) {
                     remove(index);
                     return true;
                 }
             }
         } else {
-            for(int index = 0; index < elementData.length; index++) {
-                if(elementData[index].equals(obj)) {
+            for (int index = 0; index < elementData.length; index++) {
+                if (elementData[index].equals(obj)) {
                     remove(index);
                     return true;
                 }
@@ -130,18 +134,56 @@ public class MyArrayList {
     // 根据值获取索引
     public int indexOf(Object obj) {
         if (obj == null) {
-            for(int index = 0; index < elementData.length; index++) {
-                if(elementData[index] == null) {
+            for (int index = 0; index < elementData.length; index++) {
+                if (elementData[index] == null) {
                     return index;
                 }
             }
         } else {
-            for(int index = 0; index < elementData.length; index++) {
-                if(elementData[index].equals(obj)) {
+            for (int index = 0; index < elementData.length; index++) {
+                if (elementData[index].equals(obj)) {
                     return index;
                 }
             }
         }
         return -1;
+    }
+
+    public Iterator iterator() {
+        return new Itr();
+    };
+
+    private class Itr implements Iterator {
+        int cursor; // index of next element to return
+        int lastRet = -1; // index of last element returned -1 if no such
+
+        public Itr() {
+        }
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @Override
+        public Object next() {
+            int i = cursor;
+            if (cursor > size) {
+                throw new NoSuchElementException("没有元素");
+            }
+            lastRet = i;
+            cursor = i + 1;
+            return elementData[lastRet];
+        }
+
+        @Override
+        public void remove() {
+            if (lastRet < 0) {
+                throw new IllegalArgumentException();
+            }
+            MyArrayList.this.remove(lastRet);
+            cursor = lastRet;
+            lastRet = -1;
+        }
     }
 }

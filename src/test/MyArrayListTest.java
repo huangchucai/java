@@ -80,6 +80,8 @@ public class MyArrayListTest {
 
     }
 
+    public void testItr() {}
+
     private void assertEqual(Object expect, Object actual) {
         if (!expect.equals(actual)) {
             throw new AssertionError("expect is not equal with actual~~~ expect:" + expect + "   "

@@ -20,7 +20,6 @@ public class test {
         arrayList.add('[');
         arrayList.add(1, "hcc");
         System.out.println(arrayList.indexOf("hcc"));
-
         ArrayList arrayList2 = new ArrayList();
         //System.out.println(arrayList.contains('{'));
         //System.out.println(arrayList.size());
@@ -28,6 +27,7 @@ public class test {
 //        System.out.println(Arrays.asList(leftBracket2).size());
 //        System.out.println(Arrays.asList(leftBracket).get(0).getClass());
 //        System.out.println(Arrays.asList(leftBracket2).get(0).getClass());
+
 
     }
 }
