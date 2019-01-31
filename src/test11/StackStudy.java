@@ -8,15 +8,20 @@ public class StackStudy {
 
         // 增加
         stack.push("yx");
+        stack.push("xxxx");
+        if (stack.pop() == "xxxx") {
+            System.out.println("fffff");
+        }
+        System.out.println(stack.pop());
         // 取出并删除顶层元素
-        String name = stack.pop();
-        // 判断是否为空
-        System.out.println(stack.empty());
-        // 单独的取出元素不删除
-        stack.push("hcc");
-        String hcc = stack.peek();
-        System.out.println(hcc);
-        System.out.println(stack.empty());
+        // String name = stack.pop();
+        // // 判断是否为空
+        // System.out.println(stack.empty());
+        // // 单独的取出元素不删除
+        // stack.push("hcc");
+        // String hcc = stack.peek();
+        // System.out.println(hcc);
+        // System.out.println(stack.empty());
     }
 
 }

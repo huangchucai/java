@@ -1,10 +1,18 @@
 package test11;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Stack;
-import java.util.Arrays;
 
+
+/*
+*
+描述
+给定一个字符串所表示的括号序列，包含以下字符： '(', ')', '{', '}', '[' and ']'， 判定是否是有效的括号序列。
+
+样例
+括号必须依照 "()" 顺序表示， "()[]{}" 是有效的括号，但 "([)]"则是无效的括号
+*
+*
+* */
 public class Bracket {
     /**
      * @param s: A string

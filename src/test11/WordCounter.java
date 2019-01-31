@@ -2,6 +2,16 @@ package test11;
 
 import java.util.HashMap;
 
+
+/*
+*
+描述
+给一个字符串 (只包含26个字母)，统计每个字母出现的次数 (返回类型为HashMap)
+
+样例
+给出 numbers = "hcc", 返回一个HashMap counts, 里面包含所有26个字母出现的次数
+
+* */
 public class WordCounter {
     public HashMap count(String input) {
         // 写具体实现

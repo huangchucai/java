@@ -2,6 +2,8 @@ package test;
 
 import mycollection.MyArrayList;
 
+import java.util.Iterator;
+
 public class MyArrayListTest {
     void testCase() {
         // Arrange
@@ -80,8 +82,36 @@ public class MyArrayListTest {
 
     }
 
-    public void testItr() {}
+    public void testFor() {
+        // Arrange
+        MyArrayList list = new MyArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(7);
+        // list.forEach(System.out::println);
+        for(Object obj: list) {
+            System.out.println(obj);
+        }
+    }
 
+    public void testItr() {
+        // Arrange
+        MyArrayList list = new MyArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(4);
+        list.add(7);
+        list.add(71);
+        list.add(10);
+        Iterator iterList = list.iterator();
+        // list.forEach(System.out::println);
+        while(iterList.hasNext()) {
+            int num = (int) iterList.next();
+            System.out.println(num);
+        }
+
+
+    }
     private void assertEqual(Object expect, Object actual) {
         if (!expect.equals(actual)) {
             throw new AssertionError("expect is not equal with actual~~~ expect:" + expect + "   "
@@ -93,7 +123,9 @@ public class MyArrayListTest {
 
     public static void main(String[] args) {
         MyArrayListTest test = new MyArrayListTest();
-        test.testIndexOf();
+        test.testItr();
+        // test.testFor();
+        // test.testIndexOf();
 //        test.testSize();
 //        test.testAdd();
 //        test.testRemove();

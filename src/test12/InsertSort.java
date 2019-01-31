@@ -5,6 +5,7 @@ public class InsertSort {
         for (int i = 1; i < num.length; i++) {
             int tmp = num[i];
             int j;
+            // 已经排好序的数组
             for (j = i - 1; j >= 0 && tmp < num[j]; j--) {
                 num[j+1] = num[j];
             }

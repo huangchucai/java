@@ -3,7 +3,8 @@ package mycollection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MyArrayList {
+public class MyArrayList implements Iterable {
+
     private static final int DEFAULT_CAPACITY = 10;
     private static final Object[] EMPTY_ELEMENT_DATA = {};
     private Object[] elementData;
@@ -157,8 +158,8 @@ public class MyArrayList {
         int cursor; // index of next element to return
         int lastRet = -1; // index of last element returned -1 if no such
 
-        public Itr() {
-        }
+        // public Itr() {
+        // }
 
         @Override
         public boolean hasNext() {
@@ -167,12 +168,11 @@ public class MyArrayList {
 
         @Override
         public Object next() {
-            int i = cursor;
             if (cursor > size) {
                 throw new NoSuchElementException("没有元素");
             }
-            lastRet = i;
-            cursor = i + 1;
+            lastRet = cursor;
+            cursor = cursor + 1;
             return elementData[lastRet];
         }
 

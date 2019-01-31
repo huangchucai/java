@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class NewFactory {
+    // 文件目录
     private File newsDir;
 
     public NewFactory(String dir) throws Exception {
@@ -19,30 +20,20 @@ public class NewFactory {
 
     // 请求，返回News列表
     public ArrayList<News> fetch() throws IOException {
-        ArrayList<News> newsArr = new ArrayList<>();
+        ArrayList<News> newsList = new ArrayList<>();
         File[] files = newsDir.listFiles();
         for (File file : files) {
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-                String title = bufferedReader.readLine();
-                // 读取空行
-                bufferedReader.readLine();
-
-                String content = bufferedReader.readLine();
-                bufferedReader.readLine();
-
-                String date = bufferedReader.readLine();
-                String related = bufferedReader.readLine();
-                if (title != null && content != null) {
-                    News news = new News(title, content);
-                    // 添加相关的新闻
-                    news.addRelated(date, related);
-                    newsArr.add(news);
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            String suffix = file.getName();
+            NewsReader reader = null;
+            // 根据后缀名区分不同的reader
+            if(suffix.endsWith(".txt")) {
+                reader = new TextReader(file);
+            } else if(suffix.endsWith(".json")) {
+                reader = new JsonReader(file);
             }
+            News news = reader.newReader();
+            newsList.add(news);
         }
-        return newsArr;
+        return newsList;
     }
 }

@@ -1,42 +1,37 @@
 package test12;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class QuickSort {
-    public static void qsort(Integer left , Integer right, ArrayList<Integer> input) {
-        if (input.size() <= 1 || left >= right ) {
-            return;
-        }
-        int i = left, j = right;
-        int temp = input.get(left);
-        while (i < j) {
-            while (i < j && input.get(i) > temp) {
-                i++;
-            }
-            while (i < j && input.get(i) < temp) {
-                j--;
-            }
-            if (i < j) {
-                int mid = input.get(i);
-                input.set(i, input.get(i));
-                input.set(j, mid);
-            }
-        }
-        if( left < i) {
-            qsort(left, i, input);
-        }
-        if( i < right) {
-            qsort(j, right, input);
+    public static void quickSort(int[] arr) {
+        qsort(arr, 0, arr.length - 1);
+    }
+
+    private static void qsort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pivot = partition(arr, low, high);        //将数组分为两部分
+            qsort(arr, low, pivot - 1);                   //递归排序左子数组
+            qsort(arr, pivot + 1, high);                  //递归排序右子数组
         }
     }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[low];     //枢轴记录
+        while (low < high) {
+            while (low < high && arr[high] >= pivot) --high;
+            arr[low] = arr[high];             //交换比枢轴小的记录到左端
+            while (low < high && arr[low] <= pivot) ++low;
+            arr[high] = arr[low];           //交换比枢轴小的记录到右端
+        }
+        //扫描完成，枢轴到位
+        arr[low] = pivot;
+        //返回的是枢轴的位置
+        return low;
+    }
+
     public static void main(String[] args) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(5);
-        arr.add(2);
-        arr.add(1);
-        arr.add(4);
-        arr.add(3);
-        qsort(0, arr.size() - 1, arr);
-        System.out.println(arr);
+        int[] arr = {3, 6, 2, 1, 5, 2};
+        quickSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
